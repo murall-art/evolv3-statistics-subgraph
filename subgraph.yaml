@@ -1,0 +1,32 @@
+specVersion: 1.0.0
+indexerHints:
+  prune: auto
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: Evolv3
+    network: matic
+    source:
+      address: "0x962f182c8E49fC2D9E4385202bDBe5F7A8578415"
+      abi: Evolv3
+      startBlock: 49169126
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - AdminChanged
+        - BeaconUpgraded
+        - Upgraded
+      abis:
+        - name: Evolv3
+          file: ./abis/Evolv3.json
+      eventHandlers:
+        - event: AdminChanged(address,address)
+          handler: handleAdminChanged
+        - event: BeaconUpgraded(indexed address)
+          handler: handleBeaconUpgraded
+        - event: Upgraded(indexed address)
+          handler: handleUpgraded
+      file: ./src/evolv-3.ts
