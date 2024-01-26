@@ -23,10 +23,7 @@ dataSources:
         - name: Evolv3
           file: ./abis/Evolv3.json
       eventHandlers:
-        - event: AdminChanged(address,address)
-          handler: handleAdminChanged
-        - event: BeaconUpgraded(indexed address)
-          handler: handleBeaconUpgraded
-        - event: Upgraded(indexed address)
-          handler: handleUpgraded
+        - event: Transfer(indexed address,indexed address,indexed uint256)
+          handler: handleTransfer
+          receipt: true
       file: ./src/evolv-3.ts

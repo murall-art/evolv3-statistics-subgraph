@@ -1,24 +1,25 @@
-type AdminChanged @entity(immutable: true) {
-  id: Bytes!
-  previousAdmin: Bytes! # address
-  newAdmin: Bytes! # address
-  blockNumber: BigInt!
-  blockTimestamp: BigInt!
-  transactionHash: Bytes!
+type ArtistStatistic @entity {
+  id: ID!
+  totalArtists: BigInt!
+  totalArtworks: BigInt!
 }
 
-type BeaconUpgraded @entity(immutable: true) {
-  id: Bytes!
-  beacon: Bytes! # address
-  blockNumber: BigInt!
-  blockTimestamp: BigInt!
-  transactionHash: Bytes!
+type Artist @entity {
+  id: ID!
+  artworksCreated: BigInt!
+  artworks: [Artwork!]! @derivedFrom(field: "artist")
 }
 
-type Upgraded @entity(immutable: true) {
-  id: Bytes!
-  implementation: Bytes! # address
-  blockNumber: BigInt!
-  blockTimestamp: BigInt!
+type Artwork @entity {
+  id: ID!
+  artist: Artist!
+  tokenId: BigInt!
   transactionHash: Bytes!
+  paintBurned: BigInt!
+  paintBurnedRaw: String!
+}
+
+type PaintToken @entity {
+  id: ID!
+  totalPaintBurned: BigInt!
 }
