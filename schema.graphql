@@ -7,6 +7,7 @@ type ArtistStatistic @entity {
 type Artist @entity {
   id: ID!
   artworksCreated: BigInt!
+  paintBurned: BigInt!
   artworks: [Artwork!]! @derivedFrom(field: "artist")
 }
 
